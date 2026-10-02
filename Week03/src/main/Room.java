@@ -7,6 +7,10 @@ public class Room {
 	//the name of the room
 	private String type;
 	
+	public Room() {
+		
+	}
+	
 	//getters and setters
 	public int getArea() {
 		return this.area;
