@@ -8,7 +8,8 @@ public class Room {
 	private String type;
 	
 	public Room() {
-		
+		this.area = 0;
+		this.type = "Undefined";
 	}
 	
 	//getters and setters

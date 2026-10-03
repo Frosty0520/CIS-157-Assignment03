@@ -1,12 +1,14 @@
 package main;
 
+import java.util.ArrayList;
+
 //this class will contain attributes like the street address, number of rooms and the price per sq. foot
 public class Property {
 
 	private String streetName;
 	private int streetNum;
 	private int numRooms;
-	private Room[] rooms = {};
+	private ArrayList<Room> rooms;
 	private double pricePerSquareFoot;
 	
 	private int totalArea;
@@ -16,10 +18,18 @@ public class Property {
 		
 	}
 	
-	public Property(String streetName, int streetNum, double price) {
+	public Property(String streetName, int streetNum, double price, int numRooms) {
 		this.streetName = streetName;
 		this.streetNum = streetNum;
 		this.pricePerSquareFoot = price;
+		this.numRooms = numRooms;
+		this.rooms = new ArrayList<Room>();
+		this.totalArea = 0;
+		
+		//populate the array
+		for(Room r : rooms)
+			rooms.add(r);
+		
 	}
 	
 	//getters and setters
@@ -38,12 +48,8 @@ public class Property {
 		this.streetNum = streetNum;
 	}
 	
-	public Room[] getRoomsArray() {
+	public ArrayList<Room> getRoomsList() {
 		return this.rooms;
-	}
-	
-	public void setRoomsArray(int length) {
-		this.rooms = new Room[length];
 	}
 	
 	public int getNumRooms() {
@@ -70,45 +76,23 @@ public class Property {
 		this.totalArea = totalArea;
 	}
 
-	public int calculateTotalArea(Room[] rooms) {
+	public int calculateTotalArea(ArrayList<Room> rooms) {
 		
-		for(int currentRoom = 0; currentRoom < rooms.length; currentRoom++) {
-			setTotalArea(getTotalArea() + rooms[currentRoom].getArea());
+		for(int currentRoom = 0; currentRoom < rooms.size(); currentRoom++) {
+			setTotalArea(getTotalArea() + rooms.get(currentRoom).getArea());
 		}
 		
 		return this.totalArea;
 	}
 	
 	//calculates the property value by multiplying the area of every room combined by the price per square foot
-	public double calculateValue(Room[] rooms, double price) {
+	public double calculateValue(double price) {
 		
-		int totalArea = 0;
-		
-		for(int i = 0; i < rooms.length; i++) {
-			totalArea += rooms[i].getArea();
-		}
-		
-		return totalArea*price;
+		return calculateTotalArea(rooms) * price;
 	}
 	
-	public void PrintInformation() {
-		Room[] rooms = getRoomsArray();
-		int lineNumber = 1;
+	public void printReport() {
 		
-		System.out.println(lineNumber++ + ".\tStreet: " + getStreetName() + " # " + getNumRooms());
-		System.out.print(lineNumber++ + ".\tTotal Rooms: " + getNumRooms() + " - ");
-		
-		for(int currentRoom = 0; currentRoom < rooms.length; currentRoom++) {
-			System.out.print(rooms[currentRoom].getType() + ", ");
-			
-			//print the name of the room and go to a new line
-			if(currentRoom == rooms.length-1)
-				System.out.println(rooms[currentRoom].getType());
-		} //end for loop
-		
-		System.out.println(lineNumber++ + ".\tTotal Area: " + calculateTotalArea(rooms) + " sq. ft.");
-		System.out.println(lineNumber++ + ".\tPrice per sq. ft.: $" + getPricePerSquareFoot());
-		System.out.print(lineNumber++ + ".\tEstimated Property Value: $" + calculateValue(rooms, getPricePerSquareFoot()));
 	}
 	
 } //Property class
