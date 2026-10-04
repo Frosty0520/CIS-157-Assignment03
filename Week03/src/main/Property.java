@@ -23,12 +23,8 @@ public class Property {
 		this.streetNum = streetNum;
 		this.pricePerSquareFoot = price;
 		this.numRooms = numRooms;
-		this.rooms = new ArrayList<Room>();
+		this.rooms = new ArrayList<Room>(numRooms);
 		this.totalArea = 0;
-		
-		//populate the array
-		for(Room r : rooms)
-			rooms.add(r);
 		
 	}
 	

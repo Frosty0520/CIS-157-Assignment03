@@ -28,7 +28,12 @@ public class Main {
 		
 		//create Property object
 		Property property = new Property(streetName, streetNum, pricePerSquareFoot, numRooms);
-		System.out.println(property.getRoomsList().get(0).getType());
+		
+		//populate the list of rooms
+		for(int i = 0; i < numRooms; i++) {
+			property.getRoomsList().add(new Room());
+		}
+		
 		//System.out.println("Describe the rooms:");
 		
 		//property.printReport();
