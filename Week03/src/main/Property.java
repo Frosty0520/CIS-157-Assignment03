@@ -87,8 +87,5 @@ public class Property {
 		return calculateTotalArea(rooms) * price;
 	}
 	
-	public void printReport() {
-		
-	}
 	
 } //Property class
